@@ -11,7 +11,7 @@ const jWeekDaysShort = 'یک\u200cشنبه_دوشنبه_سه\u200cشنبه_چه�
 )
 const jWeekDaysMin = 'ی_د_س_چ_پ_ج_ش'.split('_')
 
-export default class Jdate extends Date {
+export default class JDate extends Date {
   constructor() {
     super()
     const argStr = Object.prototype.toString.call(arguments[0])
@@ -111,7 +111,7 @@ export default class Jdate extends Date {
     return this._gDate.getTime()
   }
 
-  /** Gets the year, using local time. */
+  /** Gets the jalali year, using local time. */
   getFullYear() {
     return this._jDate.year
   }
@@ -119,7 +119,7 @@ export default class Jdate extends Date {
   /** Gets the year using Universal Coordinated Time (UTC). */
   getUTCFullYear() {}
 
-  /** Gets the month, using local time. */
+  /** Gets the jalali month index (0 - 11), using local time. */
   getMonth() {
     return this._jDate.month
   }
@@ -127,7 +127,7 @@ export default class Jdate extends Date {
   /** Gets the month of a Date object using Universal Coordinated Time (UTC). */
   getUTCMonth() {}
 
-  /** Gets the day-of-the-month, using local time. */
+  /** Gets the jalali day-of-the-month (1 - 29/30/31), using local time. */
   getDate() {
     return this._jDate.day
   }
@@ -231,7 +231,10 @@ export default class Jdate extends Date {
    * @param sec A numeric value equal to the seconds value.
    * @param ms A numeric value equal to the milliseconds value.
    */
-  setHours(hours, min, sec, ms) {}
+  setHours(hours, min, sec, ms) {
+    this._gDate.setHours(hours, min, sec, ms)
+    this.syncJalali()
+  }
 
   /**
    * Sets the hours value in the Date object using Universal Coordinated Time (UTC).

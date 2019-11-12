@@ -1,3 +1,5 @@
+import JDate from '../jDate'
+
 /**
  * @name toDate
  * @category Common Helpers
@@ -43,9 +45,9 @@ export default function toDate(argument) {
     (typeof argument === 'object' && argStr === '[object Date]')
   ) {
     // Prevent the date to lose the milliseconds when passed to new Date() in IE10
-    return new Date(argument.getTime())
+    return new JDate(argument.getTime())
   } else if (typeof argument === 'number' || argStr === '[object Number]') {
-    return new Date(argument)
+    return new JDate(argument)
   } else {
     if (
       (typeof argument === 'string' || argStr === '[object String]') &&
@@ -58,6 +60,6 @@ export default function toDate(argument) {
       // eslint-disable-next-line no-console
       console.warn(new Error().stack)
     }
-    return new Date(NaN)
+    return new JDate(NaN)
   }
 }
