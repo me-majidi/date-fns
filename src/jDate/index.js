@@ -65,20 +65,7 @@ export default class Jdate extends Date {
 
   /** Returns a string representation of a date. The format of the string depends on the locale. */
   toString() {
-    return (
-      jWeekDaysShort[this.getDay()] +
-      ' ' +
-      jMonths[this.getMonth()] +
-      ' ' +
-      this.getFullYear() +
-      ' ' +
-      this.getHours() +
-      ':' +
-      this.getMinutes() +
-      ':' +
-      this.getSeconds() +
-      ' GMT+0330 (Iran Standard Time)'
-    )
+    return this.toDateString() + ' ' + this.toTimeString()
   }
 
   /** Returns a date as a string value. */
@@ -95,22 +82,34 @@ export default class Jdate extends Date {
   }
 
   /** Returns a time as a string value. */
-  toTimeString() {}
+  toTimeString() {
+    return this._gDate.toTimeString()
+  }
 
   /** Returns a value as a string value appropriate to the host environment's current locale. */
-  toLocaleString() {}
+  toLocaleString() {
+    return `${this.toLocaleDateString()}, ${this.toLocaleTimeString()}`
+  }
 
   /** Returns a date as a string value appropriate to the host environment's current locale. */
-  toLocaleDateString() {}
+  toLocaleDateString() {
+    return `${this.getMonth() + 1}/${this.getDate()}/${this.getFullYear()}`
+  }
 
   /** Returns a time as a string value appropriate to the host environment's current locale. */
-  toLocaleTimeString() {}
+  toLocaleTimeString() {
+    return this._gDate.toLocaleTimeString()
+  }
 
   /** Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC. */
-  valueOf() {}
+  valueOf() {
+    return this._gDate.valueOf()
+  }
 
   /** Gets the time value in milliseconds. */
-  getTime() {}
+  getTime() {
+    return this._gDate.getTime()
+  }
 
   /** Gets the year, using local time. */
   getFullYear() {
