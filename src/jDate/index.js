@@ -313,8 +313,17 @@ export default class JDate extends Date {
     month = month || this._jDate.month
     date = date || this._jDate.day
 
-    // for checking leap years
     const monthLength = jalaaliMonthLength(year, month + 1)
+
+    if (date > monthLength) {
+      if (month > 11) {
+        year++
+        month = 0
+      }
+
+      date -= monthLength
+      month++
+    }
 
     if (isValidJalaaliDate(year, month, date)) {
       const newGregorianDate = toGregorian(
