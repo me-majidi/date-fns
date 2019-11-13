@@ -1,4 +1,10 @@
-import { toJalaali } from '../_lib/jalali'
+import {
+  toJalaali,
+  jalaaliMonthLength,
+  toGregorian,
+  isValidJalaaliDate
+} from '../_lib/jalali'
+import { da } from '../locale'
 
 const jMonths = 'فروردین_اردیبهشت_خرداد_تیر_مرداد_شهریور_مهر_آبان_آذر_دی_بهمن_اسفند'.split(
   '_'
@@ -249,7 +255,9 @@ export default class JDate extends Date {
    * Sets the numeric day-of-the-month value of the Date object using local time.
    * @param date A numeric value equal to the day of the month.
    */
-  setDate(date) {}
+  setDate(date) {
+    this.setJalaliParameters(null, null, date)
+  }
 
   /**
    * Sets the numeric day of the month in the Date object using Universal Coordinated Time (UTC).
@@ -262,7 +270,9 @@ export default class JDate extends Date {
    * @param month A numeric value equal to the month. The value for January is 0, and other month values follow consecutively.
    * @param date A numeric value representing the day of the month. If this value is not supplied, the value from a call to the getDate method is used.
    */
-  setMonth(month, date) {}
+  setMonth(month, date) {
+    return this.setJalaliParameters(null, month, date)
+  }
 
   /**
    * Sets the month value in the Date object using Universal Coordinated Time (UTC).
@@ -277,7 +287,9 @@ export default class JDate extends Date {
    * @param month A zero-based numeric value for the month (0 for January, 11 for December). Must be specified if numDate is specified.
    * @param date A numeric value equal for the day of the month.
    */
-  setFullYear(year, month, date) {}
+  setFullYear(year, month, date) {
+    return this.setJalaliParameters(year, month, date)
+  }
 
   /**
    * Sets the year value in the Date object using Universal Coordinated Time (UTC).
@@ -295,4 +307,34 @@ export default class JDate extends Date {
 
   /** Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization. */
   toJSON(key) {}
+
+  setJalaliParameters(year, month, date) {
+    year = year || this._jDate.year
+    month = month || this._jDate.month
+    date = date || this._jDate.day
+
+    // for checking leap years
+    const monthLength = jalaaliMonthLength(year, month + 1)
+
+    if (isValidJalaaliDate(year, month, date)) {
+      const newGregorianDate = toGregorian(
+        year,
+        month + 1,
+        Math.min(date, monthLength)
+      )
+      this._gDate = new Date(
+        newGregorianDate.gy,
+        newGregorianDate.gm - 1,
+        newGregorianDate.gd,
+        this._gDate.getHours(),
+        this._gDate.getMinutes(),
+        this._gDate.getSeconds(),
+        this._gDate.getMilliseconds()
+      )
+
+      this.syncJalali()
+    }
+
+    return this._gDate.getTime()
+  }
 }
