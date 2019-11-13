@@ -1,37 +1,22 @@
-import JDate from '.'
-import isToday from '../isToday'
-import isWednesday from '../isWednesday'
-import isThursday from '../isThursday'
-import formatDistance from '../formatDistance'
+// @flow
+/* eslint-env mocha */
 
-const date = new JDate(2021, 2, 20)
-console.log(date.toString())
-date.setFullYear(1398)
-console.log(date.toString())
+import assert from 'power-assert'
+import JDate from './index'
 
-// console.log(date.getFullYear(), date.getMonth(), date.getDate())
-// console.log(date.toTimeString())
-// console.log(date.toString())
-// console.log(date.toString())
-// console.log(date.toLocaleDateString())
-// console.log(date.toLocaleTimeString())
-// console.log(isToday(date))
-// console.log(isWednesday(date))
-// console.log(isThursday(date))
+describe('JDate', function() {
+  it('getFullYear', function() {
+    const date = new JDate(2015, 5, 23) // 2 Tir 1394
+    assert.equal(date.getFullYear(), 1394)
+  })
 
-// console.log(formatDistance(date, new JDate(), {}))
+  it('getMonth', function() {
+    const date = new JDate(2015, 5, 23) // 2 Tir 1394
+    assert.equal(date.getMonth(), 3)
+  })
 
-//
-//
-// date.setFullYear(1399);
-// console.log(date.toString());
-// date.setFullYear(1400, 1);
-// console.log(date.toString());
-// date.setFullYear(1398);
-// date.setMonth(8);
-// console.log(date.toString());
-// date.setMonth(11);
-// console.log(date.toString());
-// date.setDate(18);
-// console.log(date.toString());
-// date.setFullYear()
+  it('getDate', function() {
+    const date = new JDate(2015, 5, 23) // 2 Tir 1394
+    assert.equal(date.getDate(), 2)
+  })
+})
