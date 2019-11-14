@@ -1,5 +1,6 @@
 import toInteger from '../_lib/toInteger/index.js'
 import toDate from '../toDate/index.js'
+import JDate from '../jDate'
 
 /**
  * @name addDays
@@ -33,5 +34,5 @@ export default function addDays(dirtyDate, dirtyAmount) {
   var date = toDate(dirtyDate)
   var amount = toInteger(dirtyAmount)
   date.setDate(date.getDate() + amount)
-  return date
+  return new JDate(date)
 }

@@ -1,6 +1,7 @@
 import toInteger from '../_lib/toInteger/index.js'
 import toDate from '../toDate/index.js'
 import getDaysInMonth from '../getDaysInMonth/index.js'
+import JDate from '../jDate'
 
 /**
  * @name addMonths
@@ -41,5 +42,5 @@ export default function addMonths(dirtyDate, dirtyAmount) {
   // Set the last day of the new month
   // if the original date was the last day of the longer month
   date.setMonth(desiredMonth, Math.min(daysInMonth, date.getDate()))
-  return date
+  return new JDate(date)
 }
