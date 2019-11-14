@@ -316,19 +316,41 @@ export default class JDate extends Date {
     let daysInMonth
     daysInMonth = jalaaliMonthLength(year, monthIndex + 1)
 
-    while (date > daysInMonth) {
-      monthIndex++
-      date -= daysInMonth
+    if (date >= 0) {
+      while (date > daysInMonth) {
+        monthIndex++
+        date -= daysInMonth
 
-      if (monthIndex % 12 === 0) {
-        year++
+        if (monthIndex % 12 === 0) {
+          year++
+        }
+        daysInMonth = jalaaliMonthLength(year, monthIndex)
       }
-      daysInMonth = jalaaliMonthLength(year, monthIndex)
+    } else {
+      while (date < 0 && Math.abs(date) > daysInMonth) {
+        monthIndex--
+        date += daysInMonth
+
+        if (monthIndex < 0) {
+          // go to last year
+          monthIndex = 11
+          year--
+        }
+
+        daysInMonth = jalaaliMonthLength(year, monthIndex)
+      }
     }
 
-    while (monthIndex > 11) {
-      year++
-      monthIndex -= 12
+    if (monthIndex > 0) {
+      while (monthIndex > 11) {
+        year++
+        monthIndex -= 12
+      }
+    } else {
+      while (monthIndex < 0) {
+        year--
+        monthIndex += 12
+      }
     }
 
     const newGregorianDate = toGregorian(
