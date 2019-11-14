@@ -186,13 +186,21 @@ export default class JDate extends Date {
    * Sets the date and time value in the Date object.
    * @param time A numeric value representing the number of elapsed milliseconds since midnight, January 1, 1970 GMT.
    */
-  setTime(time) {}
+  setTime(time) {
+    const res = this._gDate.setTime(time)
+    this.syncJalali()
+    return res
+  }
 
   /**
    * Sets the milliseconds value in the Date object using local time.
    * @param ms A numeric value equal to the millisecond value.
    */
-  setMilliseconds(ms) {}
+  setMilliseconds(ms) {
+    const res = this._gDate.setMilliseconds(ms)
+    this.syncJalali()
+    return res
+  }
 
   /**
    * Sets the milliseconds value in the Date object using Universal Coordinated Time (UTC).
@@ -205,7 +213,11 @@ export default class JDate extends Date {
    * @param sec A numeric value equal to the seconds value.
    * @param ms A numeric value equal to the milliseconds value.
    */
-  setSeconds(sec, ms) {}
+  setSeconds(sec, ms) {
+    const res = this._gDate.setSeconds(sec, ms)
+    this.syncJalali()
+    return res
+  }
 
   /**
    * Sets the seconds value in the Date object using Universal Coordinated Time (UTC).
@@ -220,7 +232,11 @@ export default class JDate extends Date {
    * @param sec A numeric value equal to the seconds value.
    * @param ms A numeric value equal to the milliseconds value.
    */
-  setMinutes(min, sec, ms) {}
+  setMinutes(min, sec, ms) {
+    const res = this._gDate.setMinutes(min, sec, ms)
+    this.syncJalali()
+    return res
+  }
 
   /**
    * Sets the minutes value in the Date object using Universal Coordinated Time (UTC).
@@ -238,8 +254,9 @@ export default class JDate extends Date {
    * @param ms A numeric value equal to the milliseconds value.
    */
   setHours(hours, min, sec, ms) {
-    this._gDate.setHours(hours, min, sec, ms)
+    const res = this._gDate.setHours(hours, min, sec, ms)
     this.syncJalali()
+    return res
   }
 
   /**
@@ -256,7 +273,7 @@ export default class JDate extends Date {
    * @param date A numeric value equal to the day of the month.
    */
   setDate(date) {
-    this.setJalaliParameters(null, null, date)
+    return this.setJalaliParameters(null, null, date)
   }
 
   /**
