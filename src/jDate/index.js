@@ -308,41 +308,45 @@ export default class JDate extends Date {
   /** Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization. */
   toJSON(key) {}
 
-  setJalaliParameters(year, month, date) {
+  setJalaliParameters(year, monthIndex, date) {
     year = year || this._jDate.year
-    month = month || this._jDate.month
+    monthIndex = monthIndex || this._jDate.month
     date = date || this._jDate.day
 
-    const monthLength = jalaaliMonthLength(year, month + 1)
+    let daysInMonth
+    daysInMonth = jalaaliMonthLength(year, monthIndex + 1)
 
-    if (date > monthLength) {
-      if (month > 11) {
+    while (date > daysInMonth) {
+      monthIndex++
+      date -= daysInMonth
+
+      if (monthIndex % 12 === 0) {
         year++
-        month = 0
       }
-
-      date -= monthLength
-      month++
+      daysInMonth = jalaaliMonthLength(year, monthIndex)
     }
 
-    if (isValidJalaaliDate(year, month, date)) {
-      const newGregorianDate = toGregorian(
-        year,
-        month + 1,
-        Math.min(date, monthLength)
-      )
-      this._gDate = new Date(
-        newGregorianDate.gy,
-        newGregorianDate.gm - 1,
-        newGregorianDate.gd,
-        this._gDate.getHours(),
-        this._gDate.getMinutes(),
-        this._gDate.getSeconds(),
-        this._gDate.getMilliseconds()
-      )
-
-      this.syncJalali()
+    while (monthIndex > 12) {
+      year++
+      monthIndex -= 12
     }
+
+    const newGregorianDate = toGregorian(
+      year,
+      monthIndex + 1,
+      Math.min(date, daysInMonth)
+    )
+    this._gDate = new Date(
+      newGregorianDate.gy,
+      newGregorianDate.gm - 1,
+      newGregorianDate.gd,
+      this._gDate.getHours(),
+      this._gDate.getMinutes(),
+      this._gDate.getSeconds(),
+      this._gDate.getMilliseconds()
+    )
+
+    this.syncJalali()
 
     return this._gDate.getTime()
   }
