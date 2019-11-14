@@ -1,6 +1,5 @@
 import toInteger from '../_lib/toInteger/index.js'
 import toDate from '../toDate/index.js'
-import getDaysInMonth from '../getDaysInMonth/index.js'
 import JDate from '../jDate'
 
 /**
