@@ -326,7 +326,7 @@ export default class JDate extends Date {
       daysInMonth = jalaaliMonthLength(year, monthIndex)
     }
 
-    while (monthIndex > 12) {
+    while (monthIndex > 11) {
       year++
       monthIndex -= 12
     }
