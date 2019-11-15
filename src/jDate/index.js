@@ -360,17 +360,16 @@ export default class JDate extends Date {
       }
     }
 
-    if (monthIndex > 0) {
-      while (monthIndex > 11) {
-        year++
-        monthIndex -= 12
-      }
+    if (monthIndex >= 0) {
+      year += Math.floor(monthIndex / 12)
+      monthIndex = monthIndex % 12
     } else {
       while (monthIndex < 0) {
         year--
         monthIndex += 12
       }
     }
+
     const newGregorianDate = toGregorian(
       year,
       monthIndex + 1,

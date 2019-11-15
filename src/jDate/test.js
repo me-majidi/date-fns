@@ -60,4 +60,25 @@ describe('JDate', function() {
     date.setDate(-95)
     assert.equal(date.toLocaleDateString(), '1398/4/29')
   })
+
+  it('setMonth: pass positive number smaller than one year', function() {
+    const date = new JDate(2019, 10 /* Nov */, 15) // 24 Aban 1398
+
+    date.setMonth(11)
+    assert.equal(date.toLocaleDateString(), '1398/12/24')
+  })
+
+  it('setMonth: pass positive number bigger than one year', function() {
+    const date = new JDate(2019, 10 /* Nov */, 15) // 24 Aban 1398
+
+    date.setMonth(25)
+    assert.equal(date.toLocaleDateString(), '1400/2/24')
+  })
+
+  it('setMonth: pass negative number', function() {
+    const date = new JDate(2019, 10 /* Nov */, 15) // 24 Aban 1398
+
+    date.setMonth(-25)
+    assert.equal(date.toLocaleDateString(), '1395/12/24')
+  })
 })
