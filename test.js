@@ -12,6 +12,7 @@ const convertedMethods = [
   'addWeeks',
   'addYears',
   // 'areIntervalsOverlapping',
+  'subSeconds',
   'subWeeks',
   'subYears',
   'toDate'
