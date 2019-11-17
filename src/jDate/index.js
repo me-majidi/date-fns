@@ -30,6 +30,7 @@ export default class JDate extends Date {
       const date = firstArg.day || 1
 
       this._gDate = new Date()
+      this._gDate.setHours(0, 0, 0, 0)
       this.setJalaliParameters(year, monthIndex, date)
       return
     } else if (arguments.length === 1 && isNaN(firstArg)) {
@@ -305,6 +306,10 @@ export default class JDate extends Date {
    * @param ms A numeric value equal to the milliseconds value.
    */
   setHours(hours, min, sec, ms) {
+    if (isNaN(hours) || !this._gDate) {
+      this._gDate = null
+      return 'InvalidDate'
+    }
     const res = this._gDate.setHours(hours, min, sec, ms)
     this.syncJalali()
     return res
@@ -324,7 +329,7 @@ export default class JDate extends Date {
    * @param date A numeric value equal to the day of the month.
    */
   setDate(date) {
-    if (isNaN(date)) {
+    if (isNaN(date) || !this._gDate) {
       this._gDate = null
       return 'Invalid date'
     }
