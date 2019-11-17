@@ -3,42 +3,62 @@
 
 import assert from 'power-assert'
 import subWeeks from '.'
+import JDate from '../jDate'
 
 describe('subWeeks', function() {
   it('subtracts the given number of weeks', function() {
-    var result = subWeeks(new Date(2014, 8 /* Sep */, 1), 4)
-    assert.deepEqual(result, new Date(2014, 7 /* Aug */, 4))
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    var result = subWeeks(date, 4)
+    assert.deepEqual(
+      result.toString(),
+      new JDate({ year: 1398, month: 7 /* Aban */, day: 4 }).toString()
+    )
   })
 
   it('accepts a timestamp', function() {
-    var result = subWeeks(new Date(2014, 8 /* Sep */, 1).getTime(), 1)
-    assert.deepEqual(result, new Date(2014, 7 /* Aug */, 25))
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    var result = subWeeks(date.getTime(), 1)
+    assert.deepEqual(
+      result.toString(),
+      new JDate({ year: 1398, month: 7 /* Aban */, day: 25 }).toString()
+    )
   })
 
   it('converts a fractional number to an integer', function() {
-    var result = subWeeks(new Date(2014, 8 /* Sep */, 1), 4.2)
-    assert.deepEqual(result, new Date(2014, 7 /* Aug */, 4))
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    var result = subWeeks(date, 4.2)
+    assert.deepEqual(
+      result.toString(),
+      new JDate({ year: 1398, month: 7 /* Aban */, day: 4 }).toString()
+    )
   })
 
   it('implicitly converts number arguments', function() {
     // $ExpectedMistake
-    var result = subWeeks(new Date(2014, 8 /* Sep */, 1), '4')
-    assert.deepEqual(result, new Date(2014, 7 /* Aug */, 4))
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    var result = subWeeks(date, '4')
+    assert.deepEqual(
+      result.toString(),
+      new JDate({ year: 1398, month: 7 /* Aban */, day: 4 }).toString()
+    )
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 8 /* Sep */, 1)
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     subWeeks(date, 2)
-    assert.deepEqual(date, new Date(2014, 8 /* Sep */, 1))
+    assert.deepEqual(
+      date.toString(),
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 }).toString()
+    )
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {
-    var result = subWeeks(new Date(NaN), 4)
+    var result = subWeeks(new JDate(NaN), 4)
     assert(result instanceof Date && isNaN(result))
   })
 
   it('returns `Invalid Date` if the given amount is NaN', function() {
-    var result = subWeeks(new Date(2014, 8 /* Sep */, 1), NaN)
+    var result = subWeeks(new JDate(2014, 8 /* Sep */, 1), NaN)
     assert(result instanceof Date && isNaN(result))
   })
 
