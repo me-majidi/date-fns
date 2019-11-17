@@ -1,4 +1,5 @@
 import toDate from '../toDate/index.js'
+import FaIR from '../locale/fa-IR'
 import toInteger from '../_lib/toInteger/index.js'
 
 /**
@@ -40,11 +41,11 @@ export default function lastDayOfWeek(dirtyDate, dirtyOptions) {
   }
 
   var options = dirtyOptions || {}
-  var locale = options.locale
+  var locale = options.locale || FaIR
   var localeWeekStartsOn =
     locale && locale.options && locale.options.weekStartsOn
   var defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   var weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn
