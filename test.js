@@ -10,7 +10,10 @@ const convertedMethods = [
   'addQuarters',
   'addSeconds',
   'addWeeks',
-  'addYears'
+  'addYears',
+  // 'areIntervalsOverlapping',
+  'subYears',
+  'toDate'
 ]
 
 testsContext

@@ -3,49 +3,62 @@
 
 import assert from 'power-assert'
 import subYears from '.'
+import JDate from '../jDate'
 
 describe('subYears', function() {
   it('subtracts the given number of years', function() {
-    var result = subYears(new Date(2014, 8 /* Sep */, 1), 5)
-    assert.deepEqual(result, new Date(2009, 8 /* Sep */, 1))
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    var result = subYears(date, 5)
+    assert.deepEqual(
+      result.toString(),
+      new JDate({ year: 1393, month: 8 /* Azar */, day: 1 }).toString()
+    )
   })
 
   it('accepts a timestamp', function() {
-    var result = subYears(new Date(2014, 8 /* Sep */, 1).getTime(), 12)
-    assert.deepEqual(result, new Date(2002, 8 /* Sep */, 1))
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    var result = subYears(date.getTime(), 12)
+    assert.deepEqual(
+      result.toString(),
+      new JDate({ year: 1386, month: 8 /* Azar */, day: 1 }).toString()
+    )
   })
 
   it('converts a fractional number to an integer', function() {
-    var result = subYears(new Date(2014, 8 /* Sep */, 1), 5.1)
-    assert.deepEqual(result, new Date(2009, 8 /* Sep */, 1))
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    var result = subYears(date, 5.1)
+    assert.deepEqual(
+      result.toString(),
+      new JDate({ year: 1393, month: 8 /* Azar */, day: 1 }).toString()
+    )
   })
 
   it('implicitly converts number arguments', function() {
     // $ExpectedMistake
-    var result = subYears(new Date(2014, 8 /* Sep */, 1), '5')
-    assert.deepEqual(result, new Date(2009, 8 /* Sep */, 1))
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    var result = subYears(date, '5')
+    assert.deepEqual(
+      result.toString(),
+      new JDate({ year: 1393, month: 8 /* Azar */, day: 1 }).toString()
+    )
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 8 /* Sep */, 1)
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     subYears(date, 12)
-    assert.deepEqual(date, new Date(2014, 8 /* Sep */, 1))
+    assert.deepEqual(
+      date.toString(),
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 }).toString()
+    )
   })
 
   it('handles the leap years properly', function() {
-    var result = subYears(new Date(2016, 1 /* Feb */, 29), 1)
-    assert.deepEqual(result, new Date(2015, 1 /* Feb */, 28))
-  })
-
-  it('handles dates before 100 AD', function() {
-    var initialDate = new Date(0)
-    initialDate.setFullYear(0, 1 /* Feb */, 29)
-    initialDate.setHours(0, 0, 0, 0)
-    var expectedResult = new Date(0)
-    expectedResult.setFullYear(-1, 1 /* Feb */, 28)
-    expectedResult.setHours(0, 0, 0, 0)
-    var result = subYears(initialDate, 1)
-    assert.deepEqual(result, expectedResult)
+    var date = new JDate({ year: 1399, month: 11 /* Esfand */, day: 30 })
+    var result = subYears(date, 1)
+    assert.deepEqual(
+      result.toString(),
+      new JDate({ year: 1398, month: 11 /* Esfand */, day: 29 }).toString()
+    )
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {
@@ -54,7 +67,7 @@ describe('subYears', function() {
   })
 
   it('returns `Invalid Date` if the given amount is NaN', function() {
-    var result = subYears(new Date(2014, 8 /* Sep */, 1), NaN)
+    var result = subYears(new JDate(2014, 8 /* Sep */, 1), NaN)
     assert(result instanceof Date && isNaN(result))
   })
 
