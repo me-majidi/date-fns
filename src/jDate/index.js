@@ -15,22 +15,39 @@ export default class JDate extends Date {
   constructor() {
     super()
     const argStr = Object.prototype.toString.call(arguments[0])
+    const firstArg = arguments[0]
 
-    if (arguments.length === 0) {
+    if (!arguments.length) {
       this._gDate = new Date()
+    } else if (
+      firstArg.hasOwnProperty('year') ||
+      firstArg.hasOwnProperty('month') ||
+      firstArg.hasOwnProperty('day')
+    ) {
+      // initialize with jalali parameters
+      const year = firstArg.year || 1300
+      const monthIndex = firstArg.month || 0
+      const date = firstArg.day || 1
+
+      this._gDate = new Date()
+      this.setJalaliParameters(year, monthIndex, date)
+      return
+    } else if (arguments.length === 1 && isNaN(firstArg)) {
+      this._gDate = null
+      return
     } else if (arguments.length > 1) {
       this._gDate = new Date(...arguments)
+    } else if (typeof firstArg === 'number' || argStr === '[object Number]') {
+      this._gDate = new Date(firstArg)
+    } else if (firstArg instanceof Date && firstArg._jDate && firstArg._gDate) {
+      // clone JDate instance
+      this._gDate = new Date(firstArg.getTime())
     } else if (
-      arguments[0] instanceof Date ||
+      firstArg instanceof Date ||
       (typeof argument === 'object' && argStr === '[object Date]')
     ) {
-      // Prevent the date to lose the milliseconds when passed to new Date() in IE10
-      this._gDate = new Date(arguments[0].getTime())
-    } else if (
-      typeof arguments[0] === 'number' ||
-      argStr === '[object Number]'
-    ) {
-      this._gDate = new Date(arguments[0])
+      // clone native Date instance
+      this._gDate = new Date(firstArg.getTime())
     } else {
       if (
         (typeof argument === 'string' || argStr === '[object String]') &&
@@ -70,6 +87,10 @@ export default class JDate extends Date {
 
   /** Returns a date as a string value. */
   toDateString() {
+    if (!this._gDate) {
+      return 'Invalid date'
+    }
+
     return (
       jWeekDaysShort[this.getDay()] +
       ' ' +
@@ -83,6 +104,10 @@ export default class JDate extends Date {
 
   /** Returns a time as a string value. */
   toTimeString() {
+    if (!this._gDate) {
+      return 'Invalid date'
+    }
+
     return this._gDate.toTimeString()
   }
 
@@ -103,16 +128,28 @@ export default class JDate extends Date {
 
   /** Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC. */
   valueOf() {
+    if (!this._gDate) {
+      return 'Invalid date'
+    }
+
     return this._gDate.valueOf()
   }
 
   /** Gets the time value in milliseconds. */
   getTime() {
+    if (!this._gDate) {
+      return 'Invalid date'
+    }
+
     return this._gDate.getTime()
   }
 
   /** Gets the jalali year, using local time. */
   getFullYear() {
+    if (!this._gDate) {
+      return 'Invalid date'
+    }
+
     return this._jDate.year
   }
 
@@ -121,6 +158,10 @@ export default class JDate extends Date {
 
   /** Gets the jalali month index (0 - 11), using local time. */
   getMonth() {
+    if (!this._gDate) {
+      return 'Invalid date'
+    }
+
     return this._jDate.month
   }
 
@@ -129,6 +170,10 @@ export default class JDate extends Date {
 
   /** Gets the jalali day-of-the-month (1 - 29/30/31), using local time. */
   getDate() {
+    if (!this._gDate) {
+      return 'Invalid date'
+    }
+
     return this._jDate.day
   }
 
@@ -137,6 +182,10 @@ export default class JDate extends Date {
 
   /** Gets the day of the week, using local time. */
   getDay() {
+    if (!this._gDate) {
+      return 'Invalid date'
+    }
+
     return this._gDate.getDay()
   }
 
@@ -145,6 +194,10 @@ export default class JDate extends Date {
 
   /** Gets the hours in a date, using local time. */
   getHours() {
+    if (!this._gDate) {
+      return 'Invalid date'
+    }
+
     return this._gDate.getHours()
   }
 
@@ -153,6 +206,10 @@ export default class JDate extends Date {
 
   /** Gets the minutes of a Date object, using local time. */
   getMinutes() {
+    if (!this._gDate) {
+      return 'Invalid date'
+    }
+
     return this._gDate.getMinutes()
   }
 
@@ -267,6 +324,11 @@ export default class JDate extends Date {
    * @param date A numeric value equal to the day of the month.
    */
   setDate(date) {
+    if (isNaN(date)) {
+      this._gDate = null
+      return 'Invalid date'
+    }
+
     return this.setJalaliParameters(null, null, date)
   }
 
