@@ -10,8 +10,8 @@ describe('subYears', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = subYears(date, 5)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1393, month: 8 /* Azar */, day: 1 }).toString()
+      result,
+      new JDate({ year: 1393, month: 8 /* Azar */, day: 1 })
     )
   })
 
@@ -19,8 +19,8 @@ describe('subYears', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = subYears(date.getTime(), 12)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1386, month: 8 /* Azar */, day: 1 }).toString()
+      result,
+      new JDate({ year: 1386, month: 8 /* Azar */, day: 1 })
     )
   })
 
@@ -28,8 +28,8 @@ describe('subYears', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = subYears(date, 5.1)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1393, month: 8 /* Azar */, day: 1 }).toString()
+      result,
+      new JDate({ year: 1393, month: 8 /* Azar */, day: 1 })
     )
   })
 
@@ -38,8 +38,8 @@ describe('subYears', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = subYears(date, '5')
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1393, month: 8 /* Azar */, day: 1 }).toString()
+      result,
+      new JDate({ year: 1393, month: 8 /* Azar */, day: 1 })
     )
   })
 
@@ -47,8 +47,8 @@ describe('subYears', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     subYears(date, 12)
     assert.deepEqual(
-      date.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 }).toString()
+      date,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     )
   })
 
@@ -56,8 +56,8 @@ describe('subYears', function() {
     var date = new JDate({ year: 1399, month: 11 /* Esfand */, day: 30 })
     var result = subYears(date, 1)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1398, month: 11 /* Esfand */, day: 29 }).toString()
+      result,
+      new JDate({ year: 1398, month: 11 /* Esfand */, day: 29 })
     )
   })
 

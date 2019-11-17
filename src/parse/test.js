@@ -2017,7 +2017,7 @@ describe('parse', function() {
       assert.deepEqual(result, new Date(2010, 4 /* May */, 3, 23, 59, 59, 0))
     })
 
-    it('Date.prototype.toString()', function() {
+    it('Date.prototype', function() {
       var dateString = 'Wed Jul 02 2014 05:30:15 GMT+0600'
       var formatString = "EEE MMM dd yyyy HH:mm:ss 'GMT'xx"
       var result = parse(dateString, formatString, backupDate)

@@ -210,7 +210,7 @@ describe('parseISO', () => {
 
     describe('failure', () => {
       it('returns `Invalid Date` if the string is not an ISO formatted date', () => {
-        const result = parseISO(new Date(2014, 8 /* Sep */, 1, 11).toString())
+        const result = parseISO(new Date(2014, 8 /* Sep */, 1, 11))
         assert(result instanceof Date)
         assert(isNaN(result))
       })

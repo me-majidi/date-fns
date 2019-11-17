@@ -32,8 +32,8 @@ describe('format', function() {
       : 'GMT' + sign + hours + ':' + minutesLeadingZero + minutes
   var timezoneGMT = 'GMT' + timezone
 
-  var timestamp = date.getTime().toString()
-  var secondsTimestamp = Math.floor(date.getTime() / 1000).toString()
+  var timestamp = date.getTime()
+  var secondsTimestamp = Math.floor(date.getTime() / 1000)
 
   it('accepts a timestamp', function() {
     var date = new Date(2014, 3, 4).getTime()

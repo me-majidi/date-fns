@@ -10,9 +10,9 @@ describe('addDays', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 }) // 1 Azar 1398
     var result = addDays(date, 10)
 
-    assert.equal(
-      result.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 11 }).toString()
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 11 })
     )
   })
 
@@ -22,8 +22,8 @@ describe('addDays', function() {
       10
     )
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 11 }).toString()
+      result,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 11 })
     )
   })
 
@@ -33,8 +33,8 @@ describe('addDays', function() {
       10.5
     )
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 11 }).toString()
+      result,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 11 })
     )
   })
 
@@ -45,8 +45,8 @@ describe('addDays', function() {
       '10'
     )
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 11 }).toString()
+      result,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 11 })
     )
   })
 
@@ -54,8 +54,8 @@ describe('addDays', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     addDays(date, 11)
     assert.deepEqual(
-      date.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 }).toString()
+      date,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     )
   })
 

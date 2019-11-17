@@ -15,10 +15,7 @@ describe('set', function() {
       seconds: 12,
       milliseconds: 12
     })
-    assert.deepEqual(
-      result.toString(),
-      new Date(2014, 8 /* Sep */, 20, 12, 12, 12, 12).toString()
-    )
+    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 20, 12, 12, 12, 12))
   })
 
   it('sets year', function() {

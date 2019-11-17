@@ -10,8 +10,8 @@ describe('addYears', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = addYears(date, 5)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1403, month: 8 /* Azar */, day: 1 }).toString()
+      result,
+      new JDate({ year: 1403, month: 8 /* Azar */, day: 1 })
     )
   })
 
@@ -19,8 +19,8 @@ describe('addYears', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = addYears(date.getTime(), 12)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1410, month: 8 /* Azar */, day: 1 }).toString()
+      result,
+      new JDate({ year: 1410, month: 8 /* Azar */, day: 1 })
     )
   })
 
@@ -28,8 +28,8 @@ describe('addYears', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = addYears(date, 5.555)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1403, month: 8 /* Azar */, day: 1 }).toString()
+      result,
+      new JDate({ year: 1403, month: 8 /* Azar */, day: 1 })
     )
   })
 
@@ -38,8 +38,8 @@ describe('addYears', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = addYears(date, '5')
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1403, month: 8 /* Azar */, day: 1 }).toString()
+      result,
+      new JDate({ year: 1403, month: 8 /* Azar */, day: 1 })
     )
   })
 
@@ -47,8 +47,8 @@ describe('addYears', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     addYears(date, 12)
     assert.deepEqual(
-      date.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 }).toString()
+      date,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     )
   })
 
@@ -56,9 +56,9 @@ describe('addYears', function() {
     var date = new JDate({ year: 1399, month: 11 /* Esfand */, day: 30 })
     var result = addYears(date, 1)
 
-    assert.equal(
-      result.toString(),
-      new JDate({ year: 1400, month: 11 /* Esfand */, day: 29 }).toString()
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1400, month: 11 /* Esfand */, day: 29 })
     )
   })
 

@@ -75,8 +75,8 @@ describe('parseJSON', function() {
   })
 
   it('returns an invalid date for anything else', () => {
-    assert.equal(parseJSON('').toString(), 'Invalid Date')
-    assert.equal(parseJSON('invalid').toString(), 'Invalid Date')
-    assert.equal(parseJSON('2020-10-10').toString(), 'Invalid Date')
+    assert.equal(parseJSON(''), 'Invalid Date')
+    assert.equal(parseJSON('invalid'), 'Invalid Date')
+    assert.equal(parseJSON('2020-10-10'), 'Invalid Date')
   })
 })

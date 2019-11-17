@@ -10,8 +10,8 @@ describe('addQuarters', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = addQuarters(date, 1)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1398, month: 11 /* Esfand */, day: 1 }).toString()
+      result,
+      new JDate({ year: 1398, month: 11 /* Esfand */, day: 1 })
     )
   })
 
@@ -19,8 +19,8 @@ describe('addQuarters', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = addQuarters(date.getTime(), 4)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1399, month: 8 /* Azar */, day: 1 }).toString()
+      result,
+      new JDate({ year: 1399, month: 8 /* Azar */, day: 1 })
     )
   })
 
@@ -28,8 +28,8 @@ describe('addQuarters', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = addQuarters(date, 1.91)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1398, month: 11 /* Esfand */, day: 1 }).toString()
+      result,
+      new JDate({ year: 1398, month: 11 /* Esfand */, day: 1 })
     )
   })
 
@@ -38,8 +38,8 @@ describe('addQuarters', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = addQuarters(date, '1')
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1398, month: 11 /* Esfand */, day: 1 }).toString()
+      result,
+      new JDate({ year: 1398, month: 11 /* Esfand */, day: 1 })
     )
   })
 
@@ -47,8 +47,8 @@ describe('addQuarters', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     addQuarters(date, 4)
     assert.deepEqual(
-      date.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 }).toString()
+      date,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     )
   })
 
@@ -56,8 +56,8 @@ describe('addQuarters', function() {
     var date = new JDate({ year: 1399, month: 11 /* Esfand */, day: 30 }) // 1399 is leap year
     var result = addQuarters(date, 4)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1400, month: 11 /* Esfand */, day: 29 }).toString()
+      result,
+      new JDate({ year: 1400, month: 11 /* Esfand */, day: 29 })
     )
   })
 

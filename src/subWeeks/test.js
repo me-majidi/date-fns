@@ -10,8 +10,8 @@ describe('subWeeks', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = subWeeks(date, 4)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1398, month: 7 /* Aban */, day: 4 }).toString()
+      result,
+      new JDate({ year: 1398, month: 7 /* Aban */, day: 4 })
     )
   })
 
@@ -19,8 +19,8 @@ describe('subWeeks', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = subWeeks(date.getTime(), 1)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1398, month: 7 /* Aban */, day: 25 }).toString()
+      result,
+      new JDate({ year: 1398, month: 7 /* Aban */, day: 25 })
     )
   })
 
@@ -28,8 +28,8 @@ describe('subWeeks', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = subWeeks(date, 4.2)
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1398, month: 7 /* Aban */, day: 4 }).toString()
+      result,
+      new JDate({ year: 1398, month: 7 /* Aban */, day: 4 })
     )
   })
 
@@ -38,8 +38,8 @@ describe('subWeeks', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = subWeeks(date, '4')
     assert.deepEqual(
-      result.toString(),
-      new JDate({ year: 1398, month: 7 /* Aban */, day: 4 }).toString()
+      result,
+      new JDate({ year: 1398, month: 7 /* Aban */, day: 4 })
     )
   })
 
@@ -47,8 +47,8 @@ describe('subWeeks', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     subWeeks(date, 2)
     assert.deepEqual(
-      date.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 }).toString()
+      date,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     )
   })
 

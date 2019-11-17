@@ -9,27 +9,27 @@ describe('addWeeks', function() {
   it('adds the given number of weeks', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = addWeeks(date, 4)
-    assert.equal(
-      result.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 29 }).toString()
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 29 })
     )
   })
 
   it('accepts a timestamp', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = addWeeks(date.getTime(), 1)
-    assert.equal(
-      result.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 8 }).toString()
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 8 })
     )
   })
 
   it('converts a fractional number to an integer', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = addWeeks(date, 4.95)
-    assert.equal(
-      result.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 29 }).toString()
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 29 })
     )
   })
 
@@ -37,18 +37,18 @@ describe('addWeeks', function() {
     // $ExpectedMistake
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     var result = addWeeks(date, '4')
-    assert.equal(
-      result.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 29 }).toString()
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 29 })
     )
   })
 
   it('does not mutate the original date', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     addWeeks(date, 2)
-    assert.equal(
-      date.toString(),
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 }).toString()
+    assert.deepEqual(
+      date,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     )
   })
 
