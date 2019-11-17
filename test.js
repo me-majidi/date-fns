@@ -6,7 +6,8 @@ const convertedMethods = [
   'addHours',
   'addMilliseconds',
   'addMinutes',
-  'addMonths'
+  'addMonths',
+  'addQuarters'
 ]
 
 testsContext
