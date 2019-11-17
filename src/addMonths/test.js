@@ -52,23 +52,15 @@ describe('addMonths', function() {
     )
   })
 
-  // it('works well if the desired month has fewer days and the provided date is in the last day of a month', function() {
-  //   var date = new Date(2014, 11 /* Dec */, 31)
-  //   var result = addMonths(date, 2)
-  //   assert.equal(result, new Date(2015, 1 /* Feb */, 28))
-  // })
-  //
-  // it('handles dates before 100 AD', function() {
-  //   var initialDate = new Date(0)
-  //   initialDate.setFullYear(0, 0 /* Jan */, 31)
-  //   initialDate.setHours(0, 0, 0, 0)
-  //   var expectedResult = new Date(0)
-  //   expectedResult.setFullYear(0, 1 /* Feb */, 29)
-  //   expectedResult.setHours(0, 0, 0, 0)
-  //   var result = addMonths(initialDate, 1)
-  //   assert.equal(result, expectedResult)
-  // })
-  //
+  it('works well if the desired month has fewer days and the provided date is in the last day of a month', function() {
+    var date = new JDate({ year: 1398, month: 5 /* Tir */, day: 31 })
+    var result = addMonths(date, 2)
+    assert.equal(
+      result.toString(),
+      new JDate({ year: 1398, month: 7 /* Aban */, day: 30 })
+    )
+  })
+
   it('returns `Invalid Date` if the given date is invalid', function() {
     var result = addMonths(new JDate(NaN), 5)
     assert(result instanceof Date && isNaN(result))
