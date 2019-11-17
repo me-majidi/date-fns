@@ -3,58 +3,72 @@
 
 import assert from 'power-assert'
 import addYears from '.'
+import JDate from '../jDate'
 
 describe('addYears', function() {
   it('adds the given number of years', function() {
-    var result = addYears(new Date(2014, 8 /* Sep */, 1), 5)
-    assert.deepEqual(result, new Date(2019, 8 /* Sep */, 1))
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    var result = addYears(date, 5)
+    assert.deepEqual(
+      result.toString(),
+      new JDate({ year: 1403, month: 8 /* Azar */, day: 1 }).toString()
+    )
   })
 
   it('accepts a timestamp', function() {
-    var result = addYears(new Date(2014, 8 /* Sep */, 1).getTime(), 12)
-    assert.deepEqual(result, new Date(2026, 8 /* Sep */, 1))
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    var result = addYears(date.getTime(), 12)
+    assert.deepEqual(
+      result.toString(),
+      new JDate({ year: 1410, month: 8 /* Azar */, day: 1 }).toString()
+    )
   })
 
   it('converts a fractional number to an integer', function() {
-    var result = addYears(new Date(2014, 8 /* Sep */, 1), 5.555)
-    assert.deepEqual(result, new Date(2019, 8 /* Sep */, 1))
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    var result = addYears(date, 5.555)
+    assert.deepEqual(
+      result.toString(),
+      new JDate({ year: 1403, month: 8 /* Azar */, day: 1 }).toString()
+    )
   })
 
   it('implicitly converts number arguments', function() {
     // $ExpectedMistake
-    var result = addYears(new Date(2014, 8 /* Sep */, 1), '5')
-    assert.deepEqual(result, new Date(2019, 8 /* Sep */, 1))
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    var result = addYears(date, '5')
+    assert.deepEqual(
+      result.toString(),
+      new JDate({ year: 1403, month: 8 /* Azar */, day: 1 }).toString()
+    )
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 8 /* Sep */, 1)
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     addYears(date, 12)
-    assert.deepEqual(date, new Date(2014, 8 /* Sep */, 1))
+    assert.deepEqual(
+      date.toString(),
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 }).toString()
+    )
   })
 
   it('handles the leap years properly', function() {
-    var result = addYears(new Date(2016, 1 /* Feb */, 29), 1)
-    assert.deepEqual(result, new Date(2017, 1 /* Feb */, 28))
-  })
+    var date = new JDate({ year: 1399, month: 11 /* Esfand */, day: 30 })
+    var result = addYears(date, 1)
 
-  it('handles dates before 100 AD', function() {
-    var initialDate = new Date(0)
-    initialDate.setFullYear(0, 1 /* Feb */, 29)
-    initialDate.setHours(0, 0, 0, 0)
-    var expectedResult = new Date(0)
-    expectedResult.setFullYear(1, 1 /* Feb */, 28)
-    expectedResult.setHours(0, 0, 0, 0)
-    var result = addYears(initialDate, 1)
-    assert.deepEqual(result, expectedResult)
+    assert.equal(
+      result.toString(),
+      new JDate({ year: 1400, month: 11 /* Esfand */, day: 29 }).toString()
+    )
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {
-    var result = addYears(new Date(NaN), 5)
+    var result = addYears(new JDate(NaN), 5)
     assert(result instanceof Date && isNaN(result))
   })
 
   it('returns `Invalid Date` if the given amount is NaN', function() {
-    var result = addYears(new Date(2014, 8 /* Sep */, 1), NaN)
+    var result = addYears(new JDate(2014, 8 /* Sep */, 1), NaN)
     assert(result instanceof Date && isNaN(result))
   })
 

@@ -9,7 +9,8 @@ const convertedMethods = [
   'addMonths',
   'addQuarters',
   'addSeconds',
-  'addWeeks'
+  'addWeeks',
+  'addYears'
 ]
 
 testsContext
