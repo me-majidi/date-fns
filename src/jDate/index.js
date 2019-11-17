@@ -344,6 +344,16 @@ export default class JDate extends Date {
    * @param date A numeric value representing the day of the month. If this value is not supplied, the value from a call to the getDate method is used.
    */
   setMonth(month, date) {
+    if (isNaN(month)) {
+      this._gDate = null
+      return 'Invalid date'
+    }
+
+    if (typeof date !== 'undefined' && isNaN(date)) {
+      this._gDate = null
+      return 'Invalid date'
+    }
+
     return this.setJalaliParameters(null, month, date)
   }
 
@@ -361,6 +371,21 @@ export default class JDate extends Date {
    * @param date A numeric value equal for the day of the month.
    */
   setFullYear(year, month, date) {
+    if (isNaN(year)) {
+      this._gDate = null
+      return 'Invalid date'
+    }
+
+    if (typeof month !== 'undefined' && isNaN(month)) {
+      this._gDate = null
+      return 'Invalid date'
+    }
+
+    if (typeof date !== 'undefined' && isNaN(date)) {
+      this._gDate = null
+      return 'Invalid date'
+    }
+
     return this.setJalaliParameters(year, month, date)
   }
 

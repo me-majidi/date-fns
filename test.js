@@ -1,6 +1,13 @@
 var testsContext = require.context('./src/', true, /\/test\.js$/)
 
-const convertedMethods = ['jDate', 'addDays']
+const convertedMethods = [
+  'jDate',
+  'addDays',
+  'addHours',
+  'addMilliseconds',
+  'addMinutes',
+  'addMonths'
+]
 
 testsContext
   .keys()

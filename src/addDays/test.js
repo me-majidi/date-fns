@@ -54,8 +54,8 @@ describe('addDays', function() {
     var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     addDays(date, 11)
     assert.deepEqual(
-      date,
-      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+      date.toString(),
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 }).toString()
     )
   })
 
