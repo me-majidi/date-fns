@@ -13,6 +13,7 @@ const convertedMethods = [
   'addYears',
   'lastDayOfMonth',
   'lastDayOfWeek',
+  'lastDayOfYear',
   // 'areIntervalsOverlapping',
   'subSeconds',
   'subWeeks',

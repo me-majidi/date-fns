@@ -349,7 +349,7 @@ export default class JDate extends Date {
    * @param date A numeric value representing the day of the month. If this value is not supplied, the value from a call to the getDate method is used.
    */
   setMonth(month, date) {
-    if (isNaN(month)) {
+    if (isNaN(month) || !this._gDate) {
       this._gDate = null
       return 'Invalid date'
     }
