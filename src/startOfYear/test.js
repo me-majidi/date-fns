@@ -3,35 +3,35 @@
 
 import assert from 'power-assert'
 import startOfYear from '.'
+import JDate from '../jDate'
 
 describe('startOfYear', function() {
   it('returns the date with the time set to 00:00:00 and the date set to the first day of a year', function() {
-    var date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 22 })
     var result = startOfYear(date)
-    assert.deepEqual(result, new Date(2014, 0 /* Jan */, 1, 0, 0, 0, 0))
+
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 0 /* Farvardin */, day: 1 })
+    )
   })
 
   it('accepts a timestamp', function() {
-    var date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0).getTime()
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 22 }).getTime()
     var result = startOfYear(date)
-    assert.deepEqual(result, new Date(2014, 0 /* Dec */, 1, 0, 0, 0, 0))
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 0 /* Farvardin */, day: 1 })
+    )
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
     startOfYear(date)
-    assert.deepEqual(date, new Date(2014, 8 /* Sep */, 2, 11, 55, 0))
-  })
-
-  it('handles dates before 100 AD', function() {
-    var initialDate = new Date(0)
-    initialDate.setFullYear(9, 0 /* Jan */, 5)
-    initialDate.setHours(0, 0, 0, 0)
-    var expectedResult = new Date(0)
-    expectedResult.setFullYear(9, 0 /* Jan */, 1)
-    expectedResult.setHours(0, 0, 0, 0)
-    var result = startOfYear(initialDate)
-    assert.deepEqual(result, expectedResult)
+    assert.deepEqual(
+      date,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    )
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {

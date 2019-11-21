@@ -1,4 +1,5 @@
 import toDate from '../toDate/index.js'
+import JDate from '../jDate'
 
 /**
  * @name startOfYear
@@ -30,7 +31,7 @@ export default function startOfYear(dirtyDate) {
   }
 
   var cleanDate = toDate(dirtyDate)
-  var date = new Date(0)
+  var date = new JDate(0)
   date.setFullYear(cleanDate.getFullYear(), 0, 1)
   date.setHours(0, 0, 0, 0)
   return date
