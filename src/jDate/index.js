@@ -239,6 +239,11 @@ export default class JDate extends Date {
    * @param time A numeric value representing the number of elapsed milliseconds since midnight, January 1, 1970 GMT.
    */
   setTime(time) {
+    if (isNaN(time) || !this._gDate) {
+      this._gDate = null
+      return 'InvalidDate'
+    }
+
     const res = this._gDate.setTime(time)
     this.syncJalali()
     return res
@@ -249,6 +254,11 @@ export default class JDate extends Date {
    * @param ms A numeric value equal to the millisecond value.
    */
   setMilliseconds(ms) {
+    if (isNaN(ms) || !this._gDate) {
+      this._gDate = null
+      return 'InvalidDate'
+    }
+
     const res = this._gDate.setMilliseconds(ms)
     this.syncJalali()
     return res
@@ -266,6 +276,16 @@ export default class JDate extends Date {
    * @param ms A numeric value equal to the milliseconds value.
    */
   setSeconds(sec, ms) {
+    if (isNaN(sec) || !this._gDate) {
+      this._gDate = null
+      return 'InvalidDate'
+    }
+
+    if (isNaN(ms) || !this._gDate) {
+      this._gDate = null
+      return 'InvalidDate'
+    }
+
     const res = this._gDate.setSeconds(sec, ms)
     this.syncJalali()
     return res
