@@ -3,24 +3,34 @@
 
 import assert from 'power-assert'
 import startOfMonth from '.'
+import JDate from '../jDate'
 
 describe('startOfMonth', function() {
   it('returns the date with the time set to 00:00:00 and the date set to the first day of a month', function() {
-    var date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 12 })
     var result = startOfMonth(date)
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 1))
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    )
   })
 
   it('accepts a timestamp', function() {
-    var date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0).getTime()
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 12 }).getTime()
     var result = startOfMonth(date)
-    assert.deepEqual(result, new Date(2014, 8 /* Sep */, 1))
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 1 })
+    )
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 8 /* Sep */, 2, 11, 55, 0)
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 12 })
     startOfMonth(date)
-    assert.deepEqual(date, new Date(2014, 8 /* Sep */, 2, 11, 55, 0))
+    assert.deepEqual(
+      date,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 12 })
+    )
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {

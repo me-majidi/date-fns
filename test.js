@@ -17,6 +17,7 @@ const convertedMethods = [
   'lastDayOfYear',
   // 'areIntervalsOverlapping',
   'startOfMinute',
+  'startOfMonth',
   'startOfSecond',
   'startOfToday',
   'startOfTomorrow',
