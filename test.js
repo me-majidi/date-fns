@@ -1,6 +1,7 @@
 var testsContext = require.context('./src/', true, /\/test\.js$/)
 
 const convertedMethods = [
+  // '_lib',
   'jDate',
   'addDays',
   'addHours',
