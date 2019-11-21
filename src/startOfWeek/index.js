@@ -44,7 +44,7 @@ export default function startOfWeek(dirtyDate, dirtyOptions) {
   var localeWeekStartsOn =
     locale && locale.options && locale.options.weekStartsOn
   var defaultWeekStartsOn =
-    localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn)
+    localeWeekStartsOn == null ? 6 : toInteger(localeWeekStartsOn)
   var weekStartsOn =
     options.weekStartsOn == null
       ? defaultWeekStartsOn
@@ -59,7 +59,11 @@ export default function startOfWeek(dirtyDate, dirtyOptions) {
   var day = date.getDay()
   var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn
 
-  date.setDate(date.getDate() - diff)
+  if (date.getDate() < diff) {
+    date.setDate(-diff + 1)
+  } else {
+    date.setDate(date.getDate() - diff)
+  }
   date.setHours(0, 0, 0, 0)
   return date
 }

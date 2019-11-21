@@ -421,8 +421,12 @@ export default class JDate extends Date {
     }
 
     let daysInMonth,
-      currentYear = year
-    daysInMonth = jalaaliMonthLength(year, monthIndex + 1)
+      currentYear = year,
+      currentMonthIndex = monthIndex
+    daysInMonth = jalaaliMonthLength(
+      year,
+      monthIndex < 0 ? 12 + monthIndex + 1 : monthIndex + 1
+    )
 
     if (parameterToChange === 'd') {
       if (date > 0) {
@@ -438,8 +442,14 @@ export default class JDate extends Date {
         }
       } else {
         while (date < 0) {
+          if (Math.abs(monthIndex) % 12 === 0) {
+            currentMonthIndex = 12
+            currentYear--
+          }
           monthIndex--
-          daysInMonth = jalaaliMonthLength(year, monthIndex + 1)
+          currentMonthIndex--
+
+          daysInMonth = jalaaliMonthLength(currentYear, currentMonthIndex + 1)
 
           if (Math.abs(date) >= daysInMonth) {
             date += daysInMonth

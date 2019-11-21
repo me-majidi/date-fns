@@ -31,7 +31,8 @@ export default function lastDayOfMonth(dirtyDate) {
 
   var date = toDate(dirtyDate)
   var month = date.getMonth()
-  date.setFullYear(date.getFullYear(), month + 1)
+  date.setFullYear(date.getFullYear())
+  date.setMonth(month + 1)
   date.setDate(0)
   date.setHours(0, 0, 0, 0)
   return date

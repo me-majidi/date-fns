@@ -48,6 +48,13 @@ describe('JDate', function() {
   })
 
   it('setDate: pass negative number', function() {
+    const date = new JDate({ year: 1398, month: 0, day: 2 }) // 2 Farvardin 1398
+
+    date.setDate(-4)
+    assert.equal(date.toLocaleDateString(), '1397/12/26')
+  })
+
+  it('setDate: pass negative number', function() {
     const date = new JDate({ year: 1398, month: 7, day: 24 }) // 24 Aban 1398
 
     date.setDate(-30)

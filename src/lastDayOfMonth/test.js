@@ -37,6 +37,7 @@ describe('lastDayOfMonth', function() {
     it('works for the Esfand of a leap year', function() {
       var date = new JDate({ year: 1399, month: 11 /* Esfand */, day: 1 })
       var result = lastDayOfMonth(date)
+
       assert.deepEqual(
         result,
         new JDate({ year: 1399, month: 11 /* Esfand */, day: 30 })
