@@ -305,6 +305,18 @@ export default class JDate extends Date {
    * @param ms A numeric value equal to the milliseconds value.
    */
   setMinutes(min, sec, ms) {
+    if (isNaN(min) || !this._gDate) {
+      this._gDate = null
+      return 'InvalidDate'
+    }
+    if (isNaN(sec) || !this._gDate) {
+      this._gDate = null
+      return 'InvalidDate'
+    }
+    if (isNaN(ms) || !this._gDate) {
+      this._gDate = null
+      return 'InvalidDate'
+    }
     const res = this._gDate.setMinutes(min, sec, ms)
     this.syncJalali()
     return res
