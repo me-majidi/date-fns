@@ -21,14 +21,18 @@
  * var result = startOfTomorrow()
  * //=> Tue Oct 7 2014 00:00:00
  */
+import JDate from '../jDate'
+
 export default function startOfTomorrow() {
-  var now = new Date()
+  var now = new JDate()
   var year = now.getFullYear()
   var month = now.getMonth()
   var day = now.getDate()
 
-  var date = new Date(0)
-  date.setFullYear(year, month, day + 1)
+  var date = new JDate(0)
+  date.setFullYear(year)
+  date.setMonth(month)
+  date.setDate(day + 1)
   date.setHours(0, 0, 0, 0)
   return date
 }
