@@ -33,6 +33,7 @@ const convertedMethods = [
   'getTime',
   'isAfter',
   'isBefore',
+  'isDate',
   'isLeapYear',
   'isWeekend',
   'setYear',

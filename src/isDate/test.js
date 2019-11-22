@@ -4,14 +4,15 @@
 
 import assert from 'power-assert'
 import isDate from '.'
+import JDate from '../jDate'
 
 describe('isDate', function() {
   it('returns true if the given value is a date object', function() {
-    assert(isDate(new Date()))
+    assert(isDate(new JDate()))
   })
 
   it('returns true if the given value is an Invalid Date', function() {
-    assert(isDate(new Date(NaN)))
+    assert(isDate(new JDate(NaN)))
   })
 
   context('with date passed from another iframe', function() {
@@ -54,8 +55,8 @@ describe('isDate', function() {
   })
 
   it('returns false if the given value is not a date object', function() {
-    assert(!isDate(new Date().getTime()))
-    assert(!isDate(new Date().toISOString()))
+    assert(!isDate(new JDate().getTime()))
+    assert(!isDate(new JDate().toISOString()))
     assert(!isDate({}))
     assert(!isDate(null))
     assert(!isDate(0))
