@@ -32,6 +32,7 @@ const convertedMethods = [
   'getSeconds',
   'getTime',
   'isAfter',
+  'isBefore',
   'isLeapYear',
   'isWeekend',
   'setYear',
