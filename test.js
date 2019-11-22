@@ -26,6 +26,7 @@ const convertedMethods = [
   'getHours',
   'getMilliseconds',
   'getMinutes',
+  'getMonth',
   'isLeapYear',
   'setYear',
   'startOfDay',
