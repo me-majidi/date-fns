@@ -230,7 +230,13 @@ export default class JDate extends Date {
   getUTCSeconds() {}
 
   /** Gets the milliseconds of a Date, using local time. */
-  getMilliseconds() {}
+  getMilliseconds() {
+    if (!this._gDate) {
+      return NaN
+    }
+
+    return this._gDate.getMilliseconds()
+  }
 
   /** Gets the milliseconds of a Date object using Universal Coordinated Time (UTC). */
   getUTCMilliseconds() {}

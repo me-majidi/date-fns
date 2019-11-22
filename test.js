@@ -24,6 +24,7 @@ const convertedMethods = [
   'getDaysInYear',
   'getDecade',
   'getHours',
+  'getMilliseconds',
   'isLeapYear',
   'setYear',
   'startOfDay',
