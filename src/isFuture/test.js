@@ -4,11 +4,14 @@
 import assert from 'power-assert'
 import sinon from 'sinon'
 import isFuture from '.'
+import JDate from '../jDate'
 
 describe('isFuture', () => {
   let clock
   beforeEach(() => {
-    clock = sinon.useFakeTimers(new Date(2014, 8 /* Sep */, 25).getTime())
+    clock = sinon.useFakeTimers(
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 22 }).getTime()
+    )
   })
 
   afterEach(() => {
@@ -16,22 +19,30 @@ describe('isFuture', () => {
   })
 
   it('returns true if the given date is in the future', () => {
-    const result = isFuture(new Date(2014, 9 /* Oct */, 31))
+    const result = isFuture(
+      new JDate({ year: 1398, month: 9 /* Dey */, day: 2 })
+    )
     assert(result === true)
   })
 
   it('returns false if the given date is in the past', () => {
-    const result = isFuture(new Date(2014, 8 /* Sep */, 1))
+    const result = isFuture(
+      new JDate({ year: 1392, month: 8 /* Azar */, day: 22 })
+    )
     assert(result === false)
   })
 
   it('returns false if the given date is now', () => {
-    const result = isFuture(new Date(2014, 8 /* Sep */, 25))
+    const result = isFuture(
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 22 })
+    )
     assert(result === false)
   })
 
   it('accepts a timestamp', () => {
-    const result = isFuture(new Date(2014, 9 /* Oct */, 31).getTime())
+    const result = isFuture(
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 28 }).getTime()
+    )
     assert(result === true)
   })
 
