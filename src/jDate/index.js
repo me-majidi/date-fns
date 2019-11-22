@@ -28,9 +28,13 @@ export default class JDate extends Date {
       const year = firstArg.year || 1300
       const monthIndex = firstArg.month || 0
       const date = firstArg.day || 1
+      const hours = firstArg.h || 0
+      const min = firstArg.m || 0
+      const sec = firstArg.s || 0
+      const ms = firstArg.ms || 0
 
       this._gDate = new Date()
-      this._gDate.setHours(0, 0, 0, 0)
+      this._gDate.setHours(hours, min, sec, ms)
       this.setJalaliParameters(year, monthIndex, date)
       return
     } else if (arguments.length === 1 && isNaN(firstArg)) {
