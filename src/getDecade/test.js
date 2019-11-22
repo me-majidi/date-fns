@@ -3,20 +3,25 @@
 
 import assert from 'power-assert'
 import getDecade from '.'
+import JDate from '../jDate'
 
 describe('getDecade', function() {
   it('returns the decade for a the given date', function() {
-    var result = getDecade(new Date(1971, 10 /* Nov */, 8))
-    assert(result === 1970)
+    var result = getDecade(
+      new JDate({ year: 1399, month: 4 /* Mordad */, day: 12 })
+    )
+    assert(result === 1390)
   })
 
   it('accepts a timestamp', function() {
-    var result = getDecade(new Date(1969, 6 /* Jul */, 20).getTime())
-    assert(result === 1960)
+    var result = getDecade(
+      new JDate({ year: 1362, month: 4 /* Mordad */, day: 12 }).getTime()
+    )
+    assert(result === 1360)
   })
 
   it('returns NaN if the given date is invalid', function() {
-    var result = getDecade(new Date(NaN))
+    var result = getDecade(new JDate(NaN))
     assert(isNaN(result))
   })
 
