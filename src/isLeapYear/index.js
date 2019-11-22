@@ -1,4 +1,5 @@
 import toDate from '../toDate/index.js'
+import { isLeapJalaaliYear } from '../_lib/jalali'
 
 /**
  * @name isLeapYear
@@ -29,6 +30,5 @@ export default function isLeapYear(dirtyDate) {
   }
 
   var date = toDate(dirtyDate)
-  var year = date.getFullYear()
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)
+  return isLeapJalaaliYear(date.getFullYear())
 }
