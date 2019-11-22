@@ -3,20 +3,27 @@
 
 import assert from 'power-assert'
 import isFriday from '.'
+import JDate from '../jDate'
 
 describe('isFriday', function() {
   it('returns true if the given date is Friday', function() {
-    var result = isFriday(new Date(2014, 8 /* Sep */, 26))
+    var result = isFriday(
+      new JDate({ year: 1398, month: 5 /* Shahrivar */, day: 15 })
+    )
     assert(result === true)
   })
 
   it('returns false if the given date is not Friday', function() {
-    var result = isFriday(new Date(2014, 8 /* Sep */, 25))
+    var result = isFriday(
+      new JDate({ year: 1398, month: 5 /* Shahrivar */, day: 3 })
+    )
     assert(result === false)
   })
 
   it('accepts a timestamp', function() {
-    var result = isFriday(new Date(2014, 1 /* Feb */, 14).getTime())
+    var result = isFriday(
+      new JDate({ year: 1398, month: 5 /* Shahrivar */, day: 15 }).getTime()
+    )
     assert(result === true)
   })
 
