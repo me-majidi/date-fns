@@ -29,6 +29,7 @@ const convertedMethods = [
   'getMonth',
   'getQuarter',
   'getSeconds',
+  'getTime',
   'isLeapYear',
   'setYear',
   'startOfDay',

@@ -3,11 +3,12 @@
 
 import assert from 'power-assert'
 import getTime from '.'
+import JDate from '../jDate'
 
 describe('getTime', function() {
   it('returns the timestamp of the given date', function() {
     var timestamp = 1483228800000
-    var result = getTime(new Date(timestamp))
+    var result = getTime(new JDate(timestamp))
     assert(result === timestamp)
   })
 
@@ -18,7 +19,7 @@ describe('getTime', function() {
   })
 
   it('returns NaN if the given date is invalid', function() {
-    var result = getTime(new Date(NaN))
+    var result = getTime(new JDate(NaN))
     assert(isNaN(result))
   })
 
