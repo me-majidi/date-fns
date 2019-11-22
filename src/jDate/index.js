@@ -143,7 +143,7 @@ export default class JDate extends Date {
   /** Gets the time value in milliseconds. */
   getTime() {
     if (!this._gDate) {
-      return 'Invalid date'
+      return NaN
     }
 
     return this._gDate.getTime()

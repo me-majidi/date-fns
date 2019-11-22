@@ -34,6 +34,7 @@ const convertedMethods = [
   'isAfter',
   'isBefore',
   'isDate',
+  'isEqual',
   'isLeapYear',
   'isWeekend',
   'setYear',
