@@ -13,6 +13,7 @@ const convertedMethods = [
   'addWeeks',
   'addYears',
   'differenceInCalendarDays',
+  'differenceInCalendarYears',
   'lastDayOfMonth',
   'lastDayOfWeek',
   'lastDayOfYear',
