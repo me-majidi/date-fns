@@ -3,16 +3,21 @@
 
 import assert from 'power-assert'
 import getDate from '.'
+import JDate from '../jDate'
 
 describe('getDate', function() {
   it('returns the day of the month of the given date', function() {
-    var result = getDate(new Date(2012, 1 /* Feb */, 29))
-    assert(result === 29)
+    var result = getDate(
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 12 })
+    )
+    assert(result === 12)
   })
 
   it('accepts a timestamp', function() {
-    var result = getDate(new Date(2014, 11 /* Dec */, 31).getTime())
-    assert(result === 31)
+    var result = getDate(
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 12 }).getTime()
+    )
+    assert(result === 12)
   })
 
   it('returns NaN if the given date is invalid', function() {
