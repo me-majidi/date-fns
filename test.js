@@ -20,6 +20,7 @@ const convertedMethods = [
   'getDate',
   'getDay',
   'getDayOfYear',
+  'getDaysInMonth',
   'setYear',
   'startOfDay',
   'startOfHour',

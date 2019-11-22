@@ -32,8 +32,7 @@ export default function getDaysInMonth(dirtyDate) {
   var date = toDate(dirtyDate)
   var year = date.getFullYear()
   var monthIndex = date.getMonth()
-  // var lastDayOfMonth = new Date(0)
-  // lastDayOfMonth.setFullYear(year, monthIndex + 1, 0)
-  // lastDayOfMonth.setHours(0, 0, 0, 0)
-  return jalaaliMonthLength(year, monthIndex)
+  return isNaN(date.getTime())
+    ? 'Invalid date'
+    : jalaaliMonthLength(year, monthIndex + 1)
 }
