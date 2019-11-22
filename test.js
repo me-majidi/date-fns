@@ -35,6 +35,7 @@ const convertedMethods = [
   'isBefore',
   'isDate',
   'isEqual',
+  'isFirstDayOfMonth',
   'isLeapYear',
   'isWeekend',
   'setYear',
