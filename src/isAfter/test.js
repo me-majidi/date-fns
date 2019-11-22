@@ -3,52 +3,59 @@
 
 import assert from 'power-assert'
 import isAfter from '.'
+import JDate from '../jDate'
 
 describe('isAfter', function() {
   it('returns true if the first date is after the second one', function() {
     var result = isAfter(
-      new Date(1989, 6 /* Jul */, 10),
-      new Date(1987, 1 /* Feb */, 11)
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 12 }),
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 8 })
     )
     assert(result === true)
   })
 
   it('returns false if the first date is before the second one', function() {
     var result = isAfter(
-      new Date(1987, 1 /* Feb */, 11),
-      new Date(1989, 6 /* Jul */, 10)
+      new JDate({ year: 1372, month: 5 /* Mehr */, day: 12 }),
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 8 })
     )
     assert(result === false)
   })
 
   it('returns false if the first date is equal to the second one', function() {
     var result = isAfter(
-      new Date(1989, 6 /* Jul */, 10),
-      new Date(1989, 6 /* Jul */, 10)
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 8 }),
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 8 })
     )
     assert(result === false)
   })
 
   it('accepts a timestamp', function() {
     var result = isAfter(
-      new Date(1989, 6 /* Jul */, 10).getTime(),
-      new Date(1987, 1 /* Feb */, 11).getTime()
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 18 }).getTime(),
+      new JDate({ year: 1392, month: 1 /* Farvardin */, day: 2 }).getTime()
     )
     assert(result === true)
   })
 
   it('returns false if the first date is `Invalid Date`', function() {
-    var result = isAfter(new Date(NaN), new Date(1989, 6 /* Jul */, 10))
+    var result = isAfter(
+      new JDate(NaN),
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 8 })
+    )
     assert(result === false)
   })
 
   it('returns false if the second date is `Invalid Date`', function() {
-    var result = isAfter(new Date(1987, 1 /* Feb */, 11), new Date(NaN))
+    var result = isAfter(
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 8 }),
+      new JDate(NaN)
+    )
     assert(result === false)
   })
 
   it('returns false if the both dates are `Invalid Date`', function() {
-    var result = isAfter(new Date(NaN), new Date(NaN))
+    var result = isAfter(new JDate(NaN), new JDate(NaN))
     assert(result === false)
   })
 

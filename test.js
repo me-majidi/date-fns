@@ -31,6 +31,7 @@ const convertedMethods = [
   'getQuarter',
   'getSeconds',
   'getTime',
+  'isAfter',
   'isLeapYear',
   'isWeekend',
   'setYear',
