@@ -30,5 +30,5 @@ export default function isWeekend(dirtyDate) {
 
   var date = toDate(dirtyDate)
   var day = date.getDay()
-  return day === 0 || day === 6
+  return day === 5 || day === 4
 }
