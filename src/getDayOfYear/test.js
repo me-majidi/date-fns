@@ -3,28 +3,25 @@
 
 import assert from 'power-assert'
 import getDayOfYear from '.'
+import JDate from '../jDate'
 
 describe('getDayOfYear', function() {
   it('returns the day of the year of the given date', function() {
-    var result = getDayOfYear(new Date(2014, 6 /* Jul */, 2))
-    assert(result === 183)
+    var result = getDayOfYear(
+      new JDate({ year: 1398, month: 4 /* Mordad */, day: 12 })
+    )
+    assert(result === 136)
   })
 
   it('accepts a timestamp', function() {
-    var result = getDayOfYear(new Date(2014, 0 /* Jan */, 2).getTime())
-    assert(result === 2)
-  })
-
-  it('handles dates before 100 AD', function() {
-    var initialDate = new Date(0)
-    initialDate.setFullYear(0, 11 /* Dec */, 31)
-    initialDate.setHours(0, 0, 0, 0)
-    var result = getDayOfYear(initialDate)
-    assert(result === 366)
+    var result = getDayOfYear(
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 22 }).getTime()
+    )
+    assert(result === 268)
   })
 
   it('returns NaN if the given date is invalid', function() {
-    var result = getDayOfYear(new Date(NaN))
+    var result = getDayOfYear(new JDate(NaN))
     assert(isNaN(result))
   })
 

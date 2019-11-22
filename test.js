@@ -19,6 +19,7 @@ const convertedMethods = [
   // 'areIntervalsOverlapping',
   'getDate',
   'getDay',
+  'getDayOfYear',
   'setYear',
   'startOfDay',
   'startOfHour',
