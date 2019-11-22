@@ -30,9 +30,12 @@ export default function getDaysInMonth(dirtyDate) {
   }
 
   var date = toDate(dirtyDate)
+
+  if (isNaN(date)) {
+    return NaN
+  }
+
   var year = date.getFullYear()
   var monthIndex = date.getMonth()
-  return isNaN(date.getTime())
-    ? 'Invalid date'
-    : jalaaliMonthLength(year, monthIndex + 1)
+  return jalaaliMonthLength(year, monthIndex + 1)
 }
