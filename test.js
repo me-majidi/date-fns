@@ -23,6 +23,7 @@ const convertedMethods = [
   'getDaysInMonth',
   'getDaysInYear',
   'getDecade',
+  'getHours',
   'isLeapYear',
   'setYear',
   'startOfDay',
