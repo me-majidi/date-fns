@@ -223,6 +223,9 @@ export default class JDate extends Date {
 
   /** Gets the seconds of a Date object, using local time. */
   getSeconds() {
+    if (!this._gDate) {
+      return NaN
+    }
     return this._gDate.getSeconds()
   }
 
