@@ -33,7 +33,9 @@ export default function setQuarter(dirtyDate, dirtyQuarter) {
 
   var date = toDate(dirtyDate)
   var quarter = toInteger(dirtyQuarter)
-  var oldQuarter = Math.floor(date.getMonth() / 3) + 1
-  var diff = quarter - oldQuarter
-  return setMonth(date, date.getMonth() + diff * 3)
+  // var oldQuarter = Math.floor(date.getMonth() / 3) + 1
+  // var diff = quarter - oldQuarter
+  var monthIndex = quarter > 4 ? 9 : (quarter - 1) * 3
+
+  return setMonth(date, monthIndex)
 }

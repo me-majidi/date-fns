@@ -42,6 +42,7 @@ const convertedMethods = [
   'isWeekend',
   'setSeconds',
   'setMonth',
+  'setQuarter',
   'setYear',
   'startOfDay',
   'startOfHour',
