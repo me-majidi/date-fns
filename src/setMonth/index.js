@@ -1,5 +1,6 @@
 import toInteger from '../_lib/toInteger/index.js'
 import toDate from '../toDate/index.js'
+import JDate from '../jDate/index'
 import getDaysInMonth from '../getDaysInMonth/index.js'
 
 /**
@@ -36,11 +37,10 @@ export default function setMonth(dirtyDate, dirtyMonth) {
   var year = date.getFullYear()
   var day = date.getDate()
 
-  var dateWithDesiredMonth = new Date(0)
+  var dateWithDesiredMonth = new JDate(0)
   dateWithDesiredMonth.setFullYear(year)
   dateWithDesiredMonth.setMonth(month)
   dateWithDesiredMonth.setDate(15)
-
   dateWithDesiredMonth.setHours(0, 0, 0, 0)
   var daysInMonth = getDaysInMonth(dateWithDesiredMonth)
 
