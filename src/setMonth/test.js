@@ -3,49 +3,72 @@
 
 import assert from 'power-assert'
 import setMonth from '.'
+import JDate from '../jDate'
 
 describe('setMonth', function() {
   it('sets the month', function() {
-    var result = setMonth(new Date(2014, 8 /* Sep */, 1), 1)
-    assert.deepEqual(result, new Date(2014, 1 /* Feb */, 1))
+    var result = setMonth(
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 12 }),
+      1
+    )
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 1 /* Ordibehesht */, day: 12 })
+    )
   })
 
   it('sets the last day of the month if the original date was the last day of a longer month', function() {
-    var result = setMonth(new Date(2014, 11 /* Dec */, 31), 1)
-    assert.deepEqual(result, new Date(2014, 1 /* Feb */, 28))
+    var result = setMonth(
+      new JDate({ year: 1398, month: 3 /* Tir */, day: 31 }),
+      9
+    )
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 9 /* Dey */, day: 30 })
+    )
   })
 
   it('accepts a timestamp', function() {
-    var result = setMonth(new Date(2014, 8 /* Sep */, 1).getTime(), 11)
-    assert.deepEqual(result, new Date(2014, 11 /* Dec */, 1))
+    var result = setMonth(
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 12 }).getTime(),
+      11
+    )
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 11 /* Esfand */, day: 12 })
+    )
   })
 
   it('converts a fractional number to an integer', function() {
-    var result = setMonth(new Date(2014, 8 /* Sep */, 1), 1.5)
-    assert.deepEqual(result, new Date(2014, 1 /* Feb */, 1))
+    var result = setMonth(
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 12 }),
+      1.5
+    )
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 1 /* Ordibehesht */, day: 12 })
+    )
   })
 
   it('implicitly converts number arguments', function() {
     // $ExpectedMistake
-    var result = setMonth(new Date(2014, 8 /* Sep */, 1), '1')
-    assert.deepEqual(result, new Date(2014, 1 /* Feb */, 1))
+    var result = setMonth(
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 12 }),
+      '1'
+    )
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 1 /* Ordibehesht */, day: 12 })
+    )
   })
 
   it('does not mutate the original date', function() {
-    var date = new Date(2014, 8 /* Sep */, 1)
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 12 })
     setMonth(date, 5)
-    assert.deepEqual(date, new Date(2014, 8 /* Sep */, 1))
-  })
-
-  it('handles dates before 100 AD', function() {
-    var initialDate = new Date(0)
-    initialDate.setFullYear(0, 11 /* Dec */, 31)
-    initialDate.setHours(0, 0, 0, 0)
-    var expectedResult = new Date(0)
-    expectedResult.setFullYear(0, 1 /* Feb */, 29)
-    expectedResult.setHours(0, 0, 0, 0)
-    var result = setMonth(initialDate, 1)
-    assert.deepEqual(result, expectedResult)
+    assert.deepEqual(
+      date,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 12 })
+    )
   })
 
   it('returns `Invalid Date` if the given date is invalid', function() {

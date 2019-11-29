@@ -41,6 +41,7 @@ const convertedMethods = [
   'isLeapYear',
   'isWeekend',
   'setSeconds',
+  'setMonth',
   'setYear',
   'startOfDay',
   'startOfHour',
