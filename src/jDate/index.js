@@ -294,10 +294,12 @@ export default class JDate extends Date {
       return 'InvalidDate'
     }
 
-    if (isNaN(ms) || !this._gDate) {
-      this._gDate = null
-      return 'InvalidDate'
-    }
+    // if (ms && isNaN(ms) || !this._gDate) {
+    //   this._gDate = null
+    //   return 'InvalidDate'
+    // }
+
+    ms = isNaN(ms) ? this._gDate.getMilliseconds() : ms
 
     const res = this._gDate.setSeconds(sec, ms)
     this.syncJalali()

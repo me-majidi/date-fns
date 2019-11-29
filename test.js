@@ -40,6 +40,7 @@ const convertedMethods = [
   'isFuture',
   'isLeapYear',
   'isWeekend',
+  'setSeconds',
   'setYear',
   'startOfDay',
   'startOfHour',
