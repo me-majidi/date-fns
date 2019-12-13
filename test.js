@@ -14,6 +14,7 @@ const convertedMethods = [
   'addYears',
   'differenceInCalendarDays',
   'differenceInCalendarYears',
+  'endOfMonth',
   'lastDayOfMonth',
   'lastDayOfWeek',
   'lastDayOfYear',
@@ -38,6 +39,7 @@ const convertedMethods = [
   'isFirstDayOfMonth',
   'isFriday',
   'isFuture',
+  // 'isLastDayOfMonth', // TODO
   'isLeapYear',
   'isWeekend',
   'setSeconds',
