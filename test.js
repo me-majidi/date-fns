@@ -41,6 +41,7 @@ const convertedMethods = [
   'isFuture',
   'isLastDayOfMonth',
   'isLeapYear',
+  'isMonday',
   'isWeekend',
   'setSeconds',
   'setMonth',
