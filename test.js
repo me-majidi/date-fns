@@ -39,7 +39,7 @@ const convertedMethods = [
   'isFirstDayOfMonth',
   'isFriday',
   'isFuture',
-  // 'isLastDayOfMonth', // TODO
+  'isLastDayOfMonth',
   'isLeapYear',
   'isWeekend',
   'setSeconds',
