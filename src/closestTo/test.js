@@ -3,25 +3,60 @@
 
 import assert from 'power-assert'
 import closestTo from '.'
+import JDate from '../jDate'
 
 describe('closestTo', function() {
   it('returns the date from the given array closest to the given date', function() {
-    var date = new Date(2014, 6 /* Jul */, 2)
+    var date = new JDate({ year: 1398, month: 8 /* Azar */, day: 22 })
     var result = closestTo(date, [
-      new Date(2015, 7 /* Aug */, 31),
-      new Date(2012, 6 /* Jul */, 2)
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 25 }),
+      new JDate({ year: 1398, month: 4 /* Mordad */, day: 22 })
     ])
-    assert.deepEqual(result, new Date(2015, 7 /* Aug */, 31))
+    assert.deepEqual(
+      result,
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 25 })
+    )
   })
 
   it('works if the closest date from the given array is before the given date', function() {
-    var date = new Date(2014, 6 /* Jul */, 2, 6, 30, 4, 500)
+    var date = new JDate({
+      year: 1398,
+      month: 8 /* Azar */,
+      day: 19,
+      h: 5,
+      m: 5,
+      ms: 200
+    })
     var result = closestTo(date, [
-      new Date(2014, 6 /* Jul */, 2, 6, 30, 5, 900),
-      new Date(2014, 6 /* Jul */, 2, 6, 30, 3, 900),
-      new Date(2014, 6 /* Jul */, 2, 6, 30, 10)
+      new JDate({
+        year: 1398,
+        month: 8 /* Azar */,
+        day: 19,
+        h: 5,
+        m: 5,
+        ms: 400
+      }),
+      new JDate({
+        year: 1398,
+        month: 8 /* Azar */,
+        day: 19,
+        h: 3,
+        m: 2,
+        ms: 200
+      }),
+      new JDate({ year: 1398, month: 8 /* Azar */, day: 19, h: 6, m: 6, ms: 0 })
     ])
-    assert.deepEqual(result, new Date(2014, 6 /* Jul */, 2, 6, 30, 3, 900))
+    assert.deepEqual(
+      result,
+      new JDate({
+        year: 1398,
+        month: 8 /* Azar */,
+        day: 19,
+        h: 5,
+        m: 5,
+        ms: 400
+      })
+    )
   })
 
   it('accepts timestamps', function() {
