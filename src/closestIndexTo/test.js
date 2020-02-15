@@ -3,10 +3,11 @@
 
 import assert from 'power-assert'
 import closestIndexTo from '.'
+import JDate from '../jDate'
 
 describe('closestIndexTo', function() {
   it('returns the date index from the given array closest to the given date', function() {
-    var date = new Date(2014, 6 /* Jul */, 2)
+    var date = new JDate({ year: 1398, month: 1 /* Ordibehesht */, day: 12 })
     var result = closestIndexTo(date, [
       new Date(2015, 7 /* Aug */, 31),
       new Date(2012, 6 /* Jul */, 2)

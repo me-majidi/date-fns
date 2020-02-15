@@ -12,6 +12,7 @@ const convertedMethods = [
   'addSeconds',
   'addWeeks',
   'addYears',
+  'closestIndexTo',
   'closestTo',
   'differenceInCalendarDays',
   'differenceInCalendarYears',
